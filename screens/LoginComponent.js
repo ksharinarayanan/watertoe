@@ -1,13 +1,18 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Text } from "react-native";
 import ContinueWithGoogleButton from "../components/ContinueWithGoogleButton";
 import StandardText from "../components/StandardText";
+import { Snackbar } from "react-native-paper";
 
 const LoginScreen = () => {
+	const [snackbarVisible, setSnackbarVisible] = useState(true);
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.contentContainer}>
-				<ContinueWithGoogleButton />
+				<ContinueWithGoogleButton
+					onPress={() => setSnackbarVisible((s) => !s)}
+				/>
 				<View style={styles.textContainer}>
 					<StandardText>Don't have an account?</StandardText>
 					<StandardText style={{ marginLeft: 50 }}>
@@ -15,6 +20,18 @@ const LoginScreen = () => {
 					</StandardText>
 				</View>
 			</View>
+			<Snackbar
+				visible={snackbarVisible}
+				style={{ backgroundColor: "green" }}
+				onDismiss={() => {
+					setSnackbarVisible(false);
+				}}
+				action={{
+					label: "Dismiss",
+				}}
+			>
+				Login successful
+			</Snackbar>
 		</View>
 	);
 };

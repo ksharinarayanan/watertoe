@@ -3,13 +3,13 @@ import React from "react";
 import { Button } from "react-native-paper";
 import StandardText from "./StandardText";
 
-export default function ContinueWithGoogleButton() {
+export default function ContinueWithGoogleButton({ onPress }) {
 	return (
 		<View style={styles.container}>
 			<Button
 				style={styles.button}
 				mode="contained-tonal"
-				onPress={() => console.log("Button pressed")}
+				onPress={onPress}
 			>
 				<View style={styles.buttonContent}>
 					<Image
