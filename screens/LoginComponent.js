@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import ContinueWithGoogleButton from "../components/ContinueWithGoogleButton";
 import StandardText from "../components/StandardText";
 import { Snackbar } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
-
+import { useNavigation } from "@react-navigation/native";
 const LoginScreen = () => {
+    const navigation = useNavigation();
     const [snackbarVisible, setSnackbarVisible] = useState(true);
-
+    const handleSignupPress = () => {
+        navigation.navigate("Signup");
+    };
     return (
         <View style={styles.container}>
             <StandardText style={styles.loginText}>Login</StandardText>
@@ -28,9 +31,11 @@ const LoginScreen = () => {
                 />
                 <View style={styles.textContainer}>
                     <StandardText>Don't have an account?</StandardText>
-                    <StandardText style={{ marginLeft: 50 }}>
-                        Signup
-                    </StandardText>
+                    <TouchableOpacity onPress={handleSignupPress}>
+                        <StandardText style={{ marginLeft: 50 }}>
+                            Signup
+                        </StandardText>
+                    </TouchableOpacity>
                 </View>
             </LinearGradient>
             <Snackbar
